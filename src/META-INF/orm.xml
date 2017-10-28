@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
+	version="2.0">
+	
+	<access>FIELD</access>
+	
+	<named-query name="findOneEmployeeByFirstnameAndName">
+		<query>select e from Employee e where lower(e.firstname) = lower(?1) and lower(e.name) = lower(?2)</query>
+	</named-query>
+	
+	<named-query name="findOneEmployeeByLoginAndPassword">
+		<query>select e from Employee e where lower(e.login) = lower(?1) and lower(e.password) = lower(?2)</query>
+	</named-query>
+	
+	<named-query name="findAllEmployees">
+		<query>select e from Employee e</query>
+	</named-query>
+	
+	<named-query name="findOneProjectByName">
+		<query>select p from Project p where lower(p.name) = lower(?1)</query>
+	</named-query>
+	
+	<named-query name="findAllProjects">
+		<query>select p from Project p</query>
+	</named-query>
+	
+	<named-query name="findAllPrestationsByEmployeeId">
+		<query>select p from Prestation p where p.employee.id = (?1)</query>
+	</named-query>
+	
+	<named-query name="findAllPrestationsByProjectId">
+		<query>select p from Prestation p where p.project.id = (?1)</query>
+	</named-query>
+
+	<entity class ="be.steformations.sivananda.data.timesheets.entities.EmployeeImpl"/>
+	
+	<entity class ="be.steformations.sivananda.data.timesheets.entities.PrestationImpl"/>
+	
+	<entity class ="be.steformations.sivananda.data.timesheets.entities.ProjectImpl"/>
+
+</entity-mappings>
